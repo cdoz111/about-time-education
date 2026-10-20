@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Time Learning (Concept Mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1d2329; --muted:#5b6670; --paper:#faf7f2; --card:#ffffff;
+    --line:#e3ddd3; --accent:#b4532a; --accent-soft:#f6e6dc; --teal:#2f5d62; --teal-soft:#e2eeee;
+    --warn:#8a5a00; --warn-soft:#fff3d6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6;font-size:16px}
+  h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;margin:0 0 .5em}
+  h1{font-size:2.3rem} h2{font-size:1.6rem;margin-top:1.6em} h3{font-size:1.2rem;margin-top:1.2em}
+  a{color:var(--teal)}
+  .concept{background:var(--ink);color:#fff;text-align:center;font-size:.85rem;padding:8px 16px;position:sticky;top:0;z-index:10}
+  .concept strong{color:#ffd9c4}
+  header{border-bottom:1px solid var(--line);background:var(--card)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+  .brand{font-family:"Source Serif 4",serif;font-weight:700;font-size:1.3rem}
+  .brand span{color:var(--accent)}
+  nav{display:flex;gap:4px;flex-wrap:wrap}
+  nav button{font:inherit;font-size:.92rem;border:1px solid var(--line);background:var(--paper);padding:8px 14px;border-radius:999px;cursor:pointer;color:var(--ink)}
+  nav button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  main{padding:32px 0 64px}
+  section.page{display:none} section.page.active{display:block}
+  .lede{font-size:1.15rem;color:var(--muted);max-width:720px}
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:32px;margin-bottom:24px}
+  .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:24px 0}
+  .door{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;cursor:pointer;transition:transform .15s,border-color .15s}
+  .door:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .door .tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card h3{margin-top:0}
+  .pill{display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);margin:2px 4px 2px 0;font-weight:500}
+  .pill.cw{background:var(--warn-soft);color:var(--warn)}
+  .note{background:var(--warn-soft);border-left:4px solid var(--warn);padding:14px 18px;border-radius:8px;margin:20px 0}
+  .ack{background:var(--teal-soft);border-left:4px solid var(--teal);padding:14px 18px;border-radius:8px;margin:20px 0}
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .stat b{display:block;font-family:"Source Serif 4",serif;font-size:2rem;color:var(--accent)}
+  .stat span{font-size:.9rem;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.95rem}
+  th{background:#f1ece4;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  .placeholder{border:2px dashed var(--line);border-radius:10px;padding:14px 16px;color:var(--muted);background:#fdfcf9;margin:10px 0}
+  .placeholder b{color:var(--ink)}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:600;font-size:.92rem;border:none;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  ol,ul{padding-left:1.3em} li{margin:.3em 0}
+  .back{font-size:.9rem;cursor:pointer;color:var(--teal);background:none;border:none;padding:0;font:inherit;margin-bottom:12px}
+  form .field{margin-bottom:12px}
+  form label{display:block;font-weight:500;font-size:.9rem;margin-bottom:4px}
+  form input,form textarea,form select{width:100%;font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+  footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.85rem;background:var(--card)}
+  @media (max-width:600px){h1{font-size:1.8rem}.hero{padding:22px}}
+</style>
+</head>
+<body>
+
+<div class="concept"><strong>CONCEPT MOCKUP:</strong> a student proposal for an education section. Not affiliated with or published by About Time. Placeholder boxes show where About Time's published pieces would go.</div>
+
+<header>
+  <div class="wrap top">
+    <div class="brand">About Time <span>Learning</span></div>
+    <nav>
+      <button data-page="learn" class="active">Learn</button>
+      <button data-page="teachers">For Teachers</button>
+      <button data-page="students">For Students</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ LEARN (LANDING) ============ -->
+<section class="page active" id="learn">
+  <div class="hero">
+    <h1>Hear from the people inside</h1>
+    <p class="lede">About Time is written by people in prison. This section helps teachers and students use that writing to understand incarceration in Australia, in their own words.</p>
+  </div>
+
+  <div class="doors">
+    <div class="door" data-go="teachers">
+      <div class="tag">For Teachers</div>
+      <h3>Reading Collections and teaching guides</h3>
+      <p>Themed sets of About Time pieces with discussion questions, activities and NSW syllabus links. Free to download.</p>
+    </div>
+    <div class="door" data-go="students">
+      <div class="tag">For Students</div>
+      <h3>Facts, language and research help</h3>
+      <p>Key statistics, a guide to respectful language, how to cite About Time, and how to write a letter to our writers.</p>
+    </div>
+  </div>
+
+  <h2>Why this section exists</h2>
+  <ul>
+    <li>Most Australians have never been inside a prison. What they know comes mainly from news and entertainment.</li>
+    <li>That coverage rarely includes the voices of people in prison themselves.</li>
+    <li>Reading first-person accounts helps people see individuals rather than labels.</li>
+    <li>About Time already publishes this writing every month. This section makes it easy to use in classrooms.</li>
+  </ul>
+
+  <div class="note"><strong>Content note.</strong> Some pieces discuss violence, grief, self-harm and deaths in custody. Every resource is labelled so teachers and students can choose what to read.</div>
+
+  <div class="ack"><strong>Acknowledgement of Country.</strong> We acknowledge the Traditional Custodians of the lands on which About Time is written and read. Aboriginal and Torres Strait Islander people are imprisoned at far higher rates than other Australians. Our First Nations resources were developed with First Nations advice.</div>
+</section>
+
+<!-- ============ TEACHERS ============ -->
+<section class="page" id="teachers">
+  <h1>For Teachers</h1>
+  <p class="lede">Ready-to-use resources built from About Time's published writing. Each collection takes 1 to 2 lessons and links to the NSW syllabus.</p>
+
+  <h2>Reading Collections</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>1. Life Inside</h3>
+      <p>Daily routine, food, work, visits and waiting. Four written pieces and one artwork.</p>
+      <span class="pill">Years 9 to 10 English</span><span class="pill cw">Mild themes</span>
+      <p style="margin-top:14px"><button class="btn" data-go="pack">View sample pack</button></p>
+    </div>
+    <div class="card">
+      <h3>2. First Nations Voices</h3>
+      <p>Writing by people who identify as Aboriginal or Torres Strait Islander in their work, including a piece on deaths in custody.</p>
+      <span class="pill">English</span><span class="pill">Society and Culture</span><span class="pill cw">Deaths in custody</span>
+      <p style="margin-top:14px"><span class="btn ghost">Coming Term 2</span></p>
+    </div>
+    <div class="card">
+      <h3>3. Coming Home</h3>
+      <p>Parole, release, housing, work and reconnecting with family.</p>
+      <span class="pill">Legal Studies (Crime)</span><span class="pill">Society and Culture</span>
+      <p style="margin-top:14px"><span class="btn ghost">Coming Term 3</span></p>
+    </div>
+  </div>
+
+  <h2>Teaching this topic safely</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Students may have family in prison.</strong> Never ask students to share personal or family connections to the justice system.</li>
+      <li><strong>Give content warnings</strong> before each reading and offer the alternative piece listed in each pack.</li>
+      <li><strong>Acknowledge victims.</strong> These pieces share the perspective of people in prison, not the whole story. Make space for that in discussion. Support: <a href="https://victimsservices.justice.nsw.gov.au/">Victims Services NSW</a>.</li>
+      <li><strong>Avoid cultural load.</strong> Do not ask First Nations students to explain or speak for their communities.</li>
+      <li><strong>Check your school's procedures</strong> for teaching controversial issues, including principal approval and parent notification.</li>
+      <li><strong>Wellbeing support:</strong> school counsellor; Kids Helpline 1800 55 1800.</li>
+    </ul>
+  </div>
+
+  <h2>Get new collections each term</h2>
+  <div class="card">
+    <form onsubmit="event.preventDefault();this.querySelector('.ok').style.display='block'">
+      <div class="field"><label>Name</label><input placeholder="Your name"></div>
+      <div class="field"><label>School email</label><input placeholder="name@school.edu.au"></div>
+      <div class="field"><label>Subject</label>
+        <select><option>English</option><option>Legal Studies</option><option>Society and Culture</option><option>Other</option></select></div>
+      <button class="btn">Sign up</button>
+      <p class="ok" style="display:none;color:var(--teal);margin-top:10px">Mockup only: no data is collected.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ SAMPLE PACK ============ -->
+<section class="page" id="pack">
+  <button class="back" data-go="teachers">&larr; Back to For Teachers</button>
+  <h1>Reading Collection 1: Life Inside</h1>
+  <p class="lede">What does an ordinary day in prison look like, and who gets to tell that story?</p>
+  <span class="pill">Years 9 to 10 English</span><span class="pill">1 to 2 lessons</span><span class="pill cw">Mild themes: isolation, separation from family</span>
+
+  <h2>Syllabus links</h2>
+  <table>
+    <tr><th>Outcome</th><th>How this collection addresses it</th></tr>
+    <tr><td><strong>EN5-RVL-01</strong></td><td>Close reading of first-person non-fiction by Australian writers</td></tr>
+    <tr><td><strong>EN5-URB-01</strong></td><td>Evaluating how texts represent people in prison, and how that can affirm or challenge readers' attitudes</td></tr>
+    <tr><td><strong>EN5-ECA-01</strong></td><td>Writing a response letter for a real audience</td></tr>
+  </table>
+  <p style="font-size:.9rem;color:var(--muted)">Supports Stage 5 text requirements: non-fiction, and texts from a range of cultural and social perspectives.</p>
+
+  <h2>Context</h2>
+  <div class="stat-grid">
+    <div class="stat"><b>46,998</b><span>adults in prison in Australia, 30 June 2025</span></div>
+    <div class="stat"><b>42%</b><span>were unsentenced (on remand, awaiting the outcome of their case)</span></div>
+    <div class="stat"><b>92%</b><span>were male</span></div>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted)">Source: Australian Bureau of Statistics, <em>Prisoners in Australia, 2025</em>.</p>
+
+  <h2>The pieces</h2>
+  <div class="placeholder"><b>Piece 1: A day in the life.</b> A first-person account of a typical day, from muster to lock-in. <em>[About Time to insert: title, writer's first name or pen name, edition date]</em></div>
+  <div class="placeholder"><b>Piece 2: Visits.</b> A piece on preparing for and receiving a family visit. <em>[About Time to insert]</em></div>
+  <div class="placeholder"><b>Piece 3: Work and learning inside.</b> A piece on a prison job, course or program. <em>[About Time to insert]</em></div>
+  <div class="placeholder"><b>Piece 4: Opinion.</b> A writer's opinion piece on an issue affecting daily life inside. <em>[About Time to insert]</em></div>
+  <div class="placeholder"><b>Artwork or poem.</b> One visual or poetic piece from About Time's arts pages. <em>[About Time to insert]</em></div>
+  <div class="placeholder"><b>Alternative piece</b> for students who opt out: a piece on a lighter theme, such as sport, food or a creative project. <em>[About Time to insert]</em></div>
+
+  <h2>Discussion questions</h2>
+  <ol>
+    <li>What details does the writer choose to include about their day? What might they have left out, and why?</li>
+    <li>How does the writer want you to see them? Point to specific words or phrases.</li>
+    <li>What surprised you? What did you assume about prison before reading?</li>
+    <li>How does the writer's voice (first person, tone, humour) shape your response?</li>
+    <li>Find a news report about prison. How does it represent people in prison differently from these pieces?</li>
+    <li>Whose perspectives are missing from these pieces? Why might that matter?</li>
+  </ol>
+
+  <h2>Activities (choose one)</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Compare the coverage</h3>
+      <p>In pairs, compare one About Time piece with a news article about prison. Fill in a table: who speaks, what language describes people in prison, what the reader is invited to feel. Write one paragraph evaluating which text is more persuasive and why.</p>
+    </div>
+    <div class="card">
+      <h3>Letter from Outside</h3>
+      <p>Write a 200 to 300 word letter responding to one piece: what you noticed, what it made you think about, a question you'd ask. Teachers can submit selected letters through the <a href="#" data-go="students">Letters from Outside</a> page.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:20px"><span class="btn">Download pack (PDF)</span></p>
+</section>
+
+<!-- ============ STUDENTS ============ -->
+<section class="page" id="students">
+  <h1>For Students</h1>
+  <p class="lede">For high school students in English, Legal Studies or Society and Culture, and university students in criminology, law, social work or journalism.</p>
+
+  <h2>Prison in Australia: the facts</h2>
+  <div class="stat-grid">
+    <div class="stat"><b>46,998</b><span>adults in prison at 30 June 2025, up 6% in a year</span></div>
+    <div class="stat"><b>37%</b><span>of people in prison were Aboriginal or Torres Strait Islander, compared with about 3.8% of the population</span></div>
+    <div class="stat"><b>42%</b><span>were on remand (not yet sentenced), up from 31% in 2016</span></div>
+    <div class="stat"><b>60%</b><span>had been in adult prison before</span></div>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted)">Sources: Australian Bureau of Statistics, <em>Prisoners in Australia, 2025</em>; ABS 2021 Census. Updated each year when new data is released.</p>
+
+  <div class="card">
+    <h3>Why are First Nations people so overrepresented?</h3>
+    <p>Major inquiries have linked overrepresentation to the ongoing effects of colonisation, over-policing, poverty and disadvantage, rather than individual choices alone. Start with:</p>
+    <ul>
+      <li>Royal Commission into Aboriginal Deaths in Custody (1991)</li>
+      <li>Australian Law Reform Commission, <em>Pathways to Justice</em> (Report 133, 2017)</li>
+      <li>Closing the Gap Targets 10 (adults) and 11 (young people)</li>
+    </ul>
+  </div>
+
+  <h2>Words matter</h2>
+  <p>The words we use shape how people are seen. About Time uses language that describes a situation, not a whole person.</p>
+  <table>
+    <tr><th>Instead of</th><th>Try</th><th>Why</th></tr>
+    <tr><td>inmate, convict, criminal</td><td>person in prison, incarcerated person</td><td>Describes where someone is, not who they are</td></tr>
+    <tr><td>ex-con, ex-offender</td><td>person with lived experience of prison</td><td>Avoids defining someone by their past</td></tr>
+    <tr><td>"at risk youth", "the usual suspects"</td><td>young people in contact with the justice system</td><td>Labels can shape how young people are treated and how they see themselves</td></tr>
+    <tr><td>"locked up and forgotten"</td><td>"in custody"</td><td>Neutral and accurate</td></tr>
+  </table>
+
+  <h2>Using About Time in your work</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>How to cite</h3>
+      <p><strong>APA 7:</strong><br>Writer, A. (Year, Month). <em>Title of article</em>. About Time. URL</p>
+      <p><strong>Harvard:</strong><br>Writer, A. (Year) 'Title of article', <em>About Time</em>, Month. Available at: URL (Accessed: date).</p>
+      <p style="font-size:.88rem;color:var(--muted)">If a writer uses a first name or pen name only, cite it as published.</p>
+    </div>
+    <div class="card">
+      <h3>Read critically</h3>
+      <ul>
+        <li>Each piece is one person's perspective, not everyone's.</li>
+        <li>Some claims can't be independently checked. Pair them with official data.</li>
+        <li>Ask what the writer chooses to include, and what they might leave out.</li>
+        <li>Notice how voice and language shape your response.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Act ethically</h3>
+      <ul>
+        <li>Don't try to contact or identify writers.</li>
+        <li>Quote only what's published.</li>
+        <li>Represent writers fairly, including the parts of their story that complicate your argument.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="letters">Letters from Outside</h2>
+  <p>Read something that stayed with you? Write back. Each month About Time prints a selection of student letters in the paper, so writers inside know their work is being read.</p>
+  <div class="card">
+    <ul>
+      <li>Up to 300 words, responding to a specific piece</li>
+      <li>First name and school or university only</li>
+      <li>Under 18? Your teacher or parent submits for you</li>
+      <li>All letters are read by the editor before publication. No contact details are passed on in either direction.</li>
+    </ul>
+    <form onsubmit="event.preventDefault();this.querySelector('.ok').style.display='block'">
+      <div class="field"><label>First name</label><input></div>
+      <div class="field"><label>School or university</label><input></div>
+      <div class="field"><label>Which piece are you responding to?</label><input placeholder="Title and edition"></div>
+      <div class="field"><label>Your letter</label><textarea rows="5"></textarea></div>
+      <div class="field"><label>I am</label>
+        <select><option>18 or over</option><option>Under 18 (teacher or parent submitting)</option></select></div>
+      <button class="btn">Submit letter</button>
+      <p class="ok" style="display:none;color:var(--teal);margin-top:10px">Mockup only: no data is collected.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Concept mockup prepared as a student project proposal. Statistics: Australian Bureau of Statistics, <em>Prisoners in Australia, 2025</em>. Model: Refugee Council of Australia, Students and Educators section.
+  </div>
+</footer>
+
+<script>
+  const pages = document.querySelectorAll('section.page');
+  const navBtns = document.querySelectorAll('nav button');
+  function go(id){
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    const navId = id === 'pack' ? 'teachers' : id;
+    navBtns.forEach(b => b.classList.toggle('active', b.dataset.page === navId));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  navBtns.forEach(b => b.addEventListener('click', () => go(b.dataset.page)));
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); go(el.dataset.go); }));
+</script>
+</body>
+</html>
