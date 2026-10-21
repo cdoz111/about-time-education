@@ -7,89 +7,135 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#111111; --muted:#4a4a4a; --paper:#f6f6f4; --card:#f6f6f4;
-    --line:#111111; --soft-line:#cfcfcb; --green:#3a9b4f; --green-dark:#2b7a3d; --green-soft:#e6f2e8;
-    --warn:#111111; --warn-soft:#efefeb;
+    --ink:#111111; --muted:#4f4f4f; --paper:#f6f6f4; --white:#ffffff;
+    --line:#111111; --soft-line:#d9d9d4; --green:#3a9b4f; --green-dark:#2b7a3d; --green-soft:#e9f4eb;
+    --amber:#7a5200; --amber-soft:#fdf3dd;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Work Sans",system-ui,sans-serif;line-height:1.6;font-size:16px}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Work Sans",system-ui,sans-serif;line-height:1.7;font-size:17px}
+  p,li{max-width:70ch}
   h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:500;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
-  h1{font-size:2.6rem} h2{font-size:1.75rem;margin-top:1.8em;padding-top:.6em;border-top:1px solid var(--line)}
-  h2::before{content:"";display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--green);margin-right:.4em;vertical-align:.12em}
-  h3{font-size:1.3rem;margin-top:1.2em}
+  h1{font-size:2.6rem}
+  h2{font-size:1.9rem;margin-top:2.4em;padding-top:.7em;border-top:3px solid var(--line);scroll-margin-top:60px}
+  h2::before{content:"";display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--green);margin-right:.45em;vertical-align:.12em}
+  h3{font-size:1.35rem;margin-top:1.4em}
+  h4{font-family:"Work Sans",sans-serif;font-size:1.05rem;margin:0 0 .4em}
   a{color:var(--green);text-decoration:none;font-weight:600} a:hover{text-decoration:underline}
   .concept{background:var(--ink);color:#fff;text-align:center;font-size:.82rem;padding:8px 16px;position:sticky;top:0;z-index:10}
   .concept strong{color:#8fd19e}
-  header{background:var(--paper)}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
   .top{display:flex;flex-direction:column;align-items:center;gap:14px;padding:22px 0 0;border-bottom:3px solid var(--line)}
-  .brand{font-family:Newsreader,serif;font-weight:500;font-size:1.9rem;letter-spacing:-.01em;text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--line);width:100%;text-align:center}
+  .brand{font-family:Newsreader,serif;font-weight:500;font-size:1.9rem;text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--line);width:100%;text-align:center}
   .brand span{color:var(--green)}
-  nav{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;padding:4px 0 14px}
-  nav button{font-family:"Work Sans",sans-serif;font-size:1.1rem;font-weight:600;border:none;background:none;padding:4px 0;cursor:pointer;color:var(--ink)}
-  nav button.active{color:var(--green)}
+  nav{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;padding:4px 0 14px}
+  nav button{font-family:"Work Sans",sans-serif;font-size:1.1rem;font-weight:600;border:none;background:none;padding:4px 0;cursor:pointer;color:var(--ink);border-bottom:3px solid transparent}
+  nav button.active{color:var(--green);border-bottom-color:var(--green)}
   nav button:hover{color:var(--green)}
-  main{padding:28px 0 64px}
+  main{padding:32px 0 72px}
   section.page{display:none} section.page.active{display:block}
-  .lede{font-family:Newsreader,serif;font-size:1.3rem;color:var(--muted);max-width:740px}
-  .hero{padding:12px 0 22px;margin-bottom:8px;border-bottom:1px solid var(--line)}
-  .hero h1{font-size:3rem}
-  .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:0}
-  .door{padding:20px 22px 22px 0;cursor:pointer;border-bottom:1px solid var(--line)}
-  .door + .door{border-left:1px solid var(--line);padding-left:22px}
-  .door h3{color:var(--green);font-family:"Work Sans",sans-serif;font-weight:600;font-size:1.35rem;margin-top:.2em}
-  .door:hover h3{text-decoration:underline}
-  .door .tag{display:block;font-family:Newsreader,serif;font-size:1rem;text-transform:uppercase;letter-spacing:.01em;margin-bottom:6px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 24px}
-  .card{background:none;border-top:1px solid var(--line);padding:16px 0 20px}
+  .kicker{display:block;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+  .lede{font-family:Newsreader,serif;font-size:1.35rem;line-height:1.45;color:var(--muted);max-width:44ch}
+  .small{font-size:.92rem;color:var(--muted)}
+
+  /* Images, captioned the way About Time does */
+  .figure{margin:20px 0}
+  .figure img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;border:1px solid var(--line);background:#e9e9e5}
+  .figure figcaption{font-size:.82rem;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--soft-line)}
+  .figure figcaption a{font-weight:500}
+  .inline-fig{max-width:560px}
+  .inline-fig img{max-height:300px}
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;padding:24px 0 32px;border-bottom:3px solid var(--line)}
+  .hero h1{font-size:3.1rem}
+  .hero-fig{margin:0}
+  .hero-fig img{max-height:380px}
+  .collection-fig img{max-height:340px}
+
+  /* Cards: clearly separated white boxes */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .card{background:var(--white);border:1px solid var(--line);padding:22px 24px;margin:0 0 4px}
   .card h3{margin-top:0}
-  .pill{display:inline-block;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:0;margin:2px 14px 2px 0;color:var(--ink)}
-  .pill.cw{color:var(--green-dark)}
+  .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:28px 0 0}
+  .door{background:var(--white);border:1px solid var(--line);border-top:6px solid var(--green);padding:22px 24px;cursor:pointer;transition:transform .15s}
+  .door:hover{transform:translateY(-3px)}
+  .door h3{color:var(--green);font-family:"Work Sans",sans-serif;font-weight:600;font-size:1.3rem;margin:.2em 0 .4em}
+  .door .tag{display:block;font-family:Newsreader,serif;font-size:1rem;text-transform:uppercase}
+  .coll{padding:0;display:flex;flex-direction:column}
+  .coll .thumb{width:100%;height:190px;object-fit:cover;border-bottom:1px solid var(--line);display:block;background:#e9e9e5}
+  .coll h3,.coll p{padding:0 22px}
+  .coll h3{margin-top:18px}
+  .coll p:last-child{margin-top:auto;padding-bottom:20px}
+  .coll.hidden{display:none}
+  .guides-list{font-size:.92rem;color:var(--muted)}
+  .band{background:var(--white);border:1px solid var(--line);padding:4px 28px 18px;margin-top:40px}
+  .band h2{border-top:none;margin-top:.6em;padding-top:0}
+  ul.ticks{list-style:none;padding-left:0}
+  ul.ticks li{padding-left:28px;position:relative;margin:.6em 0}
+  ul.ticks li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700}
+
+  /* Labels */
+  .pill{display:inline-block;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;margin:2px 8px 2px 0;border:1px solid var(--ink);background:var(--white);color:var(--ink)}
+  .pill.cw{border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
   .pill.cw::before{content:"\26A0  "}
-  .note{background:var(--warn-soft);border-left:4px solid var(--ink);padding:14px 18px;margin:20px 0}
-  .ack{background:var(--green-soft);border-left:4px solid var(--green);padding:14px 18px;margin:20px 0}
-  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .stat{padding:16px 16px 16px 0}
-  .stat + .stat{border-left:1px solid var(--line);padding-left:16px}
-  .stat b{display:block;font-family:Newsreader,serif;font-weight:500;font-size:2.4rem;color:var(--green)}
-  .stat span{font-size:.92rem;color:var(--muted)}
-  table{width:100%;border-collapse:collapse;border-top:2px solid var(--line);border-bottom:2px solid var(--line)}
-  th,td{text-align:left;padding:12px 14px 12px 0;border-bottom:1px solid var(--soft-line);vertical-align:top;font-size:.95rem}
-  th{font-family:Newsreader,serif;font-weight:500;font-size:1rem;text-transform:uppercase;border-bottom:1px solid var(--line)}
-  tr:last-child td{border-bottom:none}
-  .placeholder{border:1px dashed var(--ink);padding:14px 16px;color:var(--muted);margin:10px 0}
-  .placeholder b{color:var(--green)}
-  .piece{border-top:1px solid var(--line);padding:14px 0 6px}
-  .piece h3{margin:.35em 0 .1em;font-size:1.35rem}
+  .note{background:var(--amber-soft);border-left:5px solid var(--amber);padding:16px 20px;margin:24px 0}
+  .ack{background:var(--green-soft);border-left:5px solid var(--green);padding:16px 20px;margin:24px 0}
+  .ack ul{margin:.4em 0 0}
+
+  /* Jump links */
+  .jump{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 0;font-size:.95rem}
+  .jump span{font-weight:600}
+  .jump a{border:2px solid var(--green);padding:4px 12px}
+  .jump a:hover{background:var(--green);color:#fff;text-decoration:none}
+
+  /* Pieces: one clear card each */
+  .piece{background:var(--white);border:1px solid var(--line);border-left:6px solid var(--green);padding:18px 22px;margin:0 0 16px}
+  .piece h3{margin:.45em 0 .15em;font-size:1.4rem}
   .piece h3 a{color:var(--ink);font-weight:500}
   .piece h3 a:hover{color:var(--green)}
-  .piece .by{font-size:.9rem;font-weight:600;color:var(--green);margin:0 0 .4em}
+  .piece .by{font-size:.9rem;font-weight:600;color:var(--green);margin:0 0 .5em}
   .piece p{margin:.3em 0}
-  .btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:9px 18px;border-radius:6px;font-family:"Work Sans",sans-serif;font-weight:600;font-size:.95rem;text-transform:uppercase;letter-spacing:.03em;border:none;cursor:pointer}
+
+  /* Stats */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:18px 0}
+  .stat{background:var(--white);border:1px solid var(--line);padding:18px 20px}
+  .stat b{display:block;font-family:Newsreader,serif;font-weight:500;font-size:2.5rem;line-height:1.1;color:var(--green)}
+  .stat span{font-size:.95rem;color:var(--muted)}
+
+  /* Tables */
+  table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);margin:10px 0}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--soft-line);vertical-align:top;font-size:.95rem}
+  th{font-family:Newsreader,serif;font-weight:500;font-size:1rem;text-transform:uppercase;background:#ececea;border-bottom:1px solid var(--line)}
+  tr:last-child td{border-bottom:none}
+  td strong{white-space:nowrap}
+
+  /* Teaching guides: tabbed panel */
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .tab{font-family:"Work Sans",sans-serif;font-weight:600;font-size:1rem;border:1px solid var(--line);border-bottom:none;background:#ececea;padding:12px 18px;cursor:pointer;color:var(--muted)}
+  .tab.active{background:var(--white);color:var(--ink);box-shadow:inset 0 4px 0 var(--green)}
+  .guide{display:none;background:var(--white);border:1px solid var(--line);padding:6px 28px 26px}
+  .guide.active{display:block}
+  .guide h3{font-family:"Work Sans",sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin:2em 0 .6em;padding-top:1em;border-top:1px solid var(--soft-line)}
+  .guide-meta{margin:18px 0 0}
+  .guide-meta + h3{border-top:none;padding-top:0;margin-top:1.2em}
+  .guide ol>li,.guide ul>li{margin:.5em 0}
+  .guide .grid .card{background:var(--paper)}
+
+  /* Buttons and forms */
+  .btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:10px 20px;border-radius:6px;font-family:"Work Sans",sans-serif;font-weight:600;font-size:.95rem;text-transform:uppercase;letter-spacing:.03em;border:none;cursor:pointer;margin-top:12px}
   .btn:hover{background:var(--green-dark);text-decoration:none}
   .btn.ghost{background:transparent;color:var(--green);border:2px solid var(--green)}
-  ol,ul{padding-left:1.3em} li{margin:.3em 0}
-  .back{font-size:.95rem;font-weight:600;cursor:pointer;color:var(--green);background:none;border:none;padding:0;font-family:"Work Sans",sans-serif;margin-bottom:12px}
-  form .field{margin-bottom:12px}
-  form label{display:block;font-weight:600;font-size:.9rem;margin-bottom:4px}
-  form input,form textarea,form select{width:100%;font:inherit;padding:10px;border:1px solid var(--ink);border-radius:0;background:#fff}
-  footer{border-top:3px solid var(--line);padding:24px 0;color:var(--muted);font-size:.85rem}
-  .small{font-size:.9rem;color:var(--muted)}
-  h4{font-family:"Work Sans",sans-serif;font-size:1.05rem;margin:0 0 .4em}
-  .filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 16px}
+  .back{font-size:.95rem;font-weight:600;cursor:pointer;color:var(--green);background:none;border:none;padding:0;font-family:"Work Sans",sans-serif;margin-bottom:16px}
+  .filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px}
   .filter-label{font-weight:600;margin-right:4px}
-  .chip{font-family:"Work Sans",sans-serif;font-weight:600;font-size:.9rem;border:2px solid var(--ink);background:none;padding:5px 12px;cursor:pointer;color:var(--ink)}
+  .chip{font-family:"Work Sans",sans-serif;font-weight:600;font-size:.9rem;border:2px solid var(--ink);background:var(--white);padding:5px 14px;cursor:pointer;color:var(--ink)}
   .chip.active,.chip:hover{background:var(--ink);color:#fff}
-  .coll.hidden{display:none}
-  .guides-list{font-size:.92rem}
-  .tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:3px solid var(--line);margin-bottom:18px}
-  .tab{font-family:"Work Sans",sans-serif;font-weight:600;font-size:1rem;border:none;background:none;padding:10px 16px 8px;cursor:pointer;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-3px}
-  .tab.active{color:var(--ink);border-bottom-color:var(--green)}
-  .guide{display:none} .guide.active{display:block}
-  .guide-meta{margin-bottom:8px}
-  .ack ul{margin:.4em 0 0}
-  @media print{.concept,header,nav,.back,.tabs,.btn,.filters,footer{display:none!important}body{background:#fff}h2{break-after:avoid}.piece,.card,tr{break-inside:avoid}}
-  @media (max-width:600px){h1,.hero h1{font-size:2rem}nav{gap:16px}.door + .door,.stat + .stat{border-left:none;padding-left:0}}
+  ol,ul{padding-left:1.3em} li{margin:.35em 0}
+  form .field{margin-bottom:14px}
+  form label{display:block;font-weight:600;font-size:.92rem;margin-bottom:4px}
+  form input,form textarea,form select{width:100%;max-width:560px;font:inherit;padding:10px;border:1px solid var(--ink);border-radius:0;background:#fff}
+  footer{border-top:3px solid var(--line);padding:24px 0;color:var(--muted);font-size:.85rem}
+  @media print{.concept,header,nav,.back,.tabs,.btn,.filters,.jump,footer,.figure{display:none!important}body{background:#fff}.guide{border:none;padding:0}h2{break-after:avoid}.piece,.card,tr{break-inside:avoid}}
+  @media (max-width:760px){.hero{grid-template-columns:1fr}.hero h1{font-size:2.2rem}h1{font-size:2rem}nav{gap:18px}.guide{padding:4px 18px 20px}.band{padding:4px 18px 14px}}
 </style>
 </head>
 <body>
@@ -112,8 +158,12 @@
 <!-- ============ LEARN (LANDING) ============ -->
 <section class="page active" id="learn">
   <div class="hero">
-    <h1>Hear from the people inside</h1>
-    <p class="lede">About Time is written by people in prison. This section helps teachers and students use that writing to understand incarceration in Australia, in their own words.</p>
+    <div class="hero-text">
+      <span class="kicker">About Time Learning</span>
+      <h1>Hear from the people inside</h1>
+      <p class="lede">About Time is written by people in prison. This section helps teachers and students use that writing to understand incarceration in Australia, in their own words.</p>
+    </div>
+    <figure class="figure hero-fig"><img src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/6acef362287804282064be58_6a4bde7ea19e345866e5b258_AT-Issue24-Experiences-InsideJob-Opt.webp" alt="Painting of a prison cell interior" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Area 1-S Block Cell 120, by Megan, acrylic on canvas, Boom Gate Gallery. <a href="https://abouttime.org.au/news-and-investigations/the-true-number-of-people-in-prison-who-have-jobs" target="_blank" rel="noopener">Via About Time</a></figcaption></figure>
   </div>
 
   <div class="doors">
@@ -129,13 +179,15 @@
     </div>
   </div>
 
+  <div class="band">
   <h2>Why this section exists</h2>
-  <ul>
+  <ul class="ticks">
     <li>Most Australians have never been inside a prison. What they know comes mainly from news and entertainment.</li>
     <li>That coverage rarely includes the voices of people in prison themselves.</li>
     <li>Reading first-person accounts helps people see individuals rather than labels.</li>
     <li>About Time already publishes this writing every month. This section makes it easy to use in classrooms.</li>
   </ul>
+  </div>
 
   <div class="note"><strong>Content note.</strong> Some pieces discuss violence, grief, self-harm and deaths in custody. Every resource is labelled so teachers and students can choose what to read.</div>
 
@@ -162,19 +214,19 @@
     <button class="chip" data-filter="legal">Legal Studies</button>
   </div>
   <div class="grid">
-    <div class="card coll" data-subjects="english">
+    <div class="card coll" data-subjects="english"><img class="thumb" src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/6acef362287804282064be58_6a4bde7ea19e345866e5b258_AT-Issue24-Experiences-InsideJob-Opt.webp" alt="Painting of a prison cell interior" loading="lazy" onerror="this.style.display='none'">
       <h3>1. Life Inside</h3>
       <p>Daily routine, work, family, time and hope. Four pieces and a poem, plus an alternative piece.</p>
       <p class="guides-list"><strong>Guides:</strong> Stage 5 English (Years 9 to 10) &middot; Year 12 English Advanced</p>
       <p><button class="btn" data-go="c-life">Open collection</button></p>
     </div>
-    <div class="card coll" data-subjects="english legal">
+    <div class="card coll" data-subjects="english legal"><img class="thumb" src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/677636daef9f43c6a34f4c1b_AT-Issue06-Mob-TreeOfLife-Opt.jpg" alt="Aboriginal artwork titled Waterhole" loading="lazy" onerror="this.style.display='none'">
       <h3>2. First Nations Voices</h3>
       <p>Writing and interviews by Aboriginal and Torres Strait Islander people in prison about culture, art, family and advocacy.</p>
       <p class="guides-list"><strong>Guides:</strong> Stage 5 English (Years 9 to 10) &middot; Year 12 Legal Studies</p>
       <p><button class="btn" data-go="c-fn">Open collection</button></p>
     </div>
-    <div class="card coll" data-subjects="legal english">
+    <div class="card coll" data-subjects="legal english"><img class="thumb" src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/6abd7c1dce4c0cf15d14cf2a_AT-Issue27-Experiences-FacingReleaseWithNowhereToGo-Opt.jpg" alt="Image accompanying Facing Release With Nowhere to Go" loading="lazy" onerror="this.style.display='none'">
       <h3>3. Coming Home</h3>
       <p>Day release, parole, housing and finding work. Recommended for senior students.</p>
       <p class="guides-list"><strong>Guides:</strong> Year 12 Legal Studies &middot; Year 12 English Advanced</p>
@@ -212,9 +264,11 @@
   <button class="back" data-go="teachers">&larr; All collections</button>
   <h1>Reading Collection 1: Life Inside</h1>
   <p class="lede">What does an ordinary day in prison look like, and who gets to tell that story?</p>
+  <figure class="figure collection-fig"><img src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/6acef362287804282064be58_6a4bde7ea19e345866e5b258_AT-Issue24-Experiences-InsideJob-Opt.webp" alt="Painting of a prison cell interior" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Area 1-S Block Cell 120, by Megan, acrylic on canvas, Boom Gate Gallery. <a href="https://abouttime.org.au/news-and-investigations/the-true-number-of-people-in-prison-who-have-jobs" target="_blank" rel="noopener">Via About Time</a></figcaption></figure>
+  <div class="jump"><span>On this page:</span><a href="#c-life-pieces">The pieces</a><a href="#c-life-guides">Teaching guides</a></div>
   <span class="pill cw">Separation from family; drug use in Piece 4</span>
 
-  <h2>The pieces</h2>
+  <h2 id="c-life-pieces">The pieces</h2>
   <p class="small">All pieces are published on About Time's website. Titles link to the original. Reuse in this collection would need each writer's consent through About Time.</p>
   <div class="piece"><span class="pill">Piece 1: A day inside</span><span class="pill cw">Worry about parole</span>
     <h3><a href="https://www.abouttime.org.au/letters/a-view-from-the-inside" target="_blank" rel="noopener">A View From the Inside</a></h3>
@@ -241,7 +295,8 @@
     <p class="by">Chelsea, writing from a prison in WA &middot; Issue No. 23, June 2026</p>
     <p>A Writing Challenge finalist about learning to cook and bake in prison kitchens, and the dishes Chelsea hopes to make for her son after release.</p></div>
 
-  <h2>Teaching guides</h2>
+  <h2 id="c-life-guides">Teaching guides</h2>
+  <p class="small">Choose a subject below. The pieces stay the same; the questions, activities and syllabus links change.</p>
   <div class="guides">
     <div class="tabs" role="tablist">
       <button class="tab active" data-tab="life-en">Stage 5 English &middot; Years 9 to 10</button>
@@ -330,6 +385,8 @@
   <button class="back" data-go="teachers">&larr; All collections</button>
   <h1>Reading Collection 2: First Nations Voices</h1>
   <p class="lede">How do Aboriginal and Torres Strait Islander people in prison keep culture, family and advocacy strong, in their own words?</p>
+  <figure class="figure collection-fig"><img src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/677636daef9f43c6a34f4c1b_AT-Issue06-Mob-TreeOfLife-Opt.jpg" alt="Aboriginal artwork titled Waterhole" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>‘Waterhole’ by Michael B, Boom Gate Gallery. <a href="https://www.abouttime.org.au/mob/tree-of-life" target="_blank" rel="noopener">Via About Time</a></figcaption></figure>
+  <div class="jump"><span>On this page:</span><a href="#c-fn-pieces">The pieces</a><a href="#c-fn-guides">Teaching guides</a></div>
 
   <div class="ack"><strong>Before you teach.</strong>
     <ul>
@@ -341,7 +398,7 @@
     </ul>
   </div>
 
-  <h2>The pieces</h2>
+  <h2 id="c-fn-pieces">The pieces</h2>
   <p class="small">All pieces are published on About Time's website. Titles link to the original. Reuse in this collection would need each writer's consent through About Time.</p>
   <div class="piece"><span class="pill">Piece 1: Culture and art</span>
     <h3><a href="https://www.abouttime.org.au/mob/tree-of-life" target="_blank" rel="noopener">Tree of Life</a></h3>
@@ -368,7 +425,8 @@
     <p class="by">Reported by Denham Sadler, About Time &middot; Issue No. 26, September 2026</p>
     <p>A profile of the First Nations-led GO Foundation and its education scholarships, with a message for people in prison to stay connected to culture and keep learning.</p></div>
 
-  <h2>Teaching guides</h2>
+  <h2 id="c-fn-guides">Teaching guides</h2>
+  <p class="small">Choose a subject below. The pieces stay the same; the questions, activities and syllabus links change.</p>
   <div class="guides">
     <div class="tabs" role="tablist">
       <button class="tab active" data-tab="fn-en">Stage 5 English &middot; Years 9 to 10</button>
@@ -439,9 +497,11 @@
   <button class="back" data-go="teachers">&larr; All collections</button>
   <h1>Reading Collection 3: Coming Home</h1>
   <p class="lede">What happens when people leave prison, and does the system help them stay out?</p>
+  <figure class="figure collection-fig"><img src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/6abd7c1dce4c0cf15d14cf2a_AT-Issue27-Experiences-FacingReleaseWithNowhereToGo-Opt.jpg" alt="Image accompanying Facing Release With Nowhere to Go" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Harrison Doust. <a href="https://www.abouttime.org.au/experiences/facing-release-with-nowhere-to-go" target="_blank" rel="noopener">Via About Time</a></figcaption></figure>
+  <div class="jump"><span>On this page:</span><a href="#c-home-pieces">The pieces</a><a href="#c-home-guides">Teaching guides</a></div>
   <span class="pill cw">Recommended for Years 11 to 12: homelessness, grief, mild coarse language</span>
 
-  <h2>The pieces</h2>
+  <h2 id="c-home-pieces">The pieces</h2>
   <p class="small">All pieces are published on About Time's website. Titles link to the original. Reuse in this collection would need each writer's consent through About Time.</p>
   <div class="piece"><span class="pill">Piece 1: Before release</span><span class="pill cw">Homelessness, hopelessness</span>
     <h3><a href="https://www.abouttime.org.au/experiences/facing-release-with-nowhere-to-go" target="_blank" rel="noopener">Facing Release With Nowhere to Go</a></h3>
@@ -450,7 +510,9 @@
   <div class="piece"><span class="pill">Piece 2: Day release</span><span class="pill cw">Emotional distress, mild coarse language</span>
     <h3><a href="https://www.abouttime.org.au/experiences/day-release-freedom-whiplash" target="_blank" rel="noopener">Day Release: Freedom Whiplash</a></h3>
     <p class="by">Jonathan, writing from a prison in NSW &middot; Issue No. 22, May 2026</p>
-    <p>Jonathan describes the hope of a monthly day out with his mother, including a swim at Coogee, and the jarring return to prison afterwards.</p></div>
+    <p>Jonathan describes the hope of a monthly day out with his mother, including a swim at Coogee, and the jarring return to prison afterwards.</p>
+    <figure class="figure inline-fig"><img src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/69fa681d30bd7cd256e8ac64_AT-Issue22-Experiences-DayRelease-FreedomWhiplash-Opt.webp" alt="Illustration accompanying Day Release: Freedom Whiplash" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Ethan Cassidy. <a href="https://www.abouttime.org.au/experiences/day-release-freedom-whiplash" target="_blank" rel="noopener">Via About Time</a></figcaption></figure>
+  </div>
   <div class="piece"><span class="pill">Piece 3: Parole</span><span class="pill cw">Grief, mild coarse language</span>
     <h3><a href="https://www.abouttime.org.au/reintegration/ask-stacey-how-it-feels-to-finish-parole" target="_blank" rel="noopener">Ask Stacey! How It Feels to Finish Parole</a></h3>
     <p class="by">Stacey Stokes, who has lived experience of prison &middot; Issue No. 25, August 2026</p>
@@ -464,7 +526,8 @@
     <p class="by">Chelsea, writing from a prison in WA &middot; Issue No. 23, June 2026</p>
     <p>Learning to cook in prison, and the dishes Chelsea hopes to make for her son after release.</p></div>
 
-  <h2>Teaching guides</h2>
+  <h2 id="c-home-guides">Teaching guides</h2>
+  <p class="small">Choose a subject below. The pieces stay the same; the questions, activities and syllabus links change.</p>
   <div class="guides">
     <div class="tabs" role="tablist">
       <button class="tab active" data-tab="home-legal">Year 12 Legal Studies</button>
@@ -540,6 +603,7 @@
   <p class="lede">For high school students in English or Legal Studies, and university students in criminology, law, social work or journalism.</p>
 
   <h2>Prison in Australia: the facts</h2>
+  <figure class="figure inline-fig"><img src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/6aa01fb27bfc7a6beb08f027_AT-Illustration-National-Opt.webp" alt="Illustration of Australia" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Ethan Cassidy. <a href="https://www.abouttime.org.au/" target="_blank" rel="noopener">Via About Time</a></figcaption></figure>
   <div class="stat-grid">
     <div class="stat"><b>46,998</b><span>adults in prison at 30 June 2025, up 6% in a year</span></div>
     <div class="stat"><b>37%</b><span>of people in prison were Aboriginal or Torres Strait Islander, compared with about 3.8% of the population</span></div>
@@ -597,6 +661,7 @@
   </div>
 
   <h2 id="letters">Letters from Outside</h2>
+  <figure class="figure inline-fig"><img src="https://cdn.prod.website-files.com/677636daef9f43c6a34f471d/6abd6a63c08626c62858a528_AT-Issue27-Letters-YourWordsMadeMeBelieveIAmWorthSomething-Opt.jpg" alt="Photo accompanying a reader letter" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Ire Photocreative via Unsplash. <a href="https://www.abouttime.org.au/" target="_blank" rel="noopener">Via About Time</a></figcaption></figure>
   <p>Read something that stayed with you? Write back. Each month About Time prints a selection of student letters in the paper, so writers inside know their work is being read.</p>
   <div class="card">
     <ul>
