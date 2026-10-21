@@ -74,6 +74,21 @@
   form label{display:block;font-weight:600;font-size:.9rem;margin-bottom:4px}
   form input,form textarea,form select{width:100%;font:inherit;padding:10px;border:1px solid var(--ink);border-radius:0;background:#fff}
   footer{border-top:3px solid var(--line);padding:24px 0;color:var(--muted);font-size:.85rem}
+  .small{font-size:.9rem;color:var(--muted)}
+  h4{font-family:"Work Sans",sans-serif;font-size:1.05rem;margin:0 0 .4em}
+  .filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 16px}
+  .filter-label{font-weight:600;margin-right:4px}
+  .chip{font-family:"Work Sans",sans-serif;font-weight:600;font-size:.9rem;border:2px solid var(--ink);background:none;padding:5px 12px;cursor:pointer;color:var(--ink)}
+  .chip.active,.chip:hover{background:var(--ink);color:#fff}
+  .coll.hidden{display:none}
+  .guides-list{font-size:.92rem}
+  .tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:3px solid var(--line);margin-bottom:18px}
+  .tab{font-family:"Work Sans",sans-serif;font-weight:600;font-size:1rem;border:none;background:none;padding:10px 16px 8px;cursor:pointer;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-3px}
+  .tab.active{color:var(--ink);border-bottom-color:var(--green)}
+  .guide{display:none} .guide.active{display:block}
+  .guide-meta{margin-bottom:8px}
+  .ack ul{margin:.4em 0 0}
+  @media print{.concept,header,nav,.back,.tabs,.btn,.filters,footer{display:none!important}body{background:#fff}h2{break-after:avoid}.piece,.card,tr{break-inside:avoid}}
   @media (max-width:600px){h1,.hero h1{font-size:2rem}nav{gap:16px}.door + .door,.stat + .stat{border-left:none;padding-left:0}}
 </style>
 </head>
@@ -130,27 +145,41 @@
 <!-- ============ TEACHERS ============ -->
 <section class="page" id="teachers">
   <h1>For Teachers</h1>
-  <p class="lede">Ready-to-use resources built from About Time's published writing. Each collection takes 1 to 2 lessons and links to the NSW syllabus.</p>
+  <p class="lede">Free Reading Collections built from About Time's published writing. Each collection is a set of pieces with teaching guides for different subjects and year levels, mapped to the NSW syllabus.</p>
+
+  <h2>How the collections work</h2>
+  <div class="grid">
+    <div class="card"><h3>1. Choose a collection</h3><p>Each collection groups 4 to 5 pieces by people in prison around one theme, plus an alternative piece for students who opt out.</p></div>
+    <div class="card"><h3>2. Choose a teaching guide</h3><p>Each collection has guides for different subjects and stages. The pieces stay the same; the questions, activities and syllabus links change.</p></div>
+    <div class="card"><h3>3. Print or save</h3><p>Every guide can be printed or saved as a PDF. Read the content warnings and the safe teaching guide before you start.</p></div>
+  </div>
 
   <h2>Reading Collections</h2>
+  <div class="filters" role="group" aria-label="Filter collections">
+    <span class="filter-label">Subject:</span>
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="english">English</button>
+    <button class="chip" data-filter="legal">Legal Studies</button>
+    <button class="chip" data-filter="sac">Society and Culture</button>
+  </div>
   <div class="grid">
-    <div class="card">
+    <div class="card coll" data-subjects="english sac">
       <h3>1. Life Inside</h3>
-      <p>Daily routine, work, family, time and hope. Four written pieces and one poem, plus an alternative piece.</p>
-      <span class="pill">Years 9 to 10 English</span><span class="pill cw">Mild themes</span>
-      <p style="margin-top:14px"><button class="btn" data-go="pack">View sample pack</button></p>
+      <p>Daily routine, work, family, time and hope. Four pieces and a poem, plus an alternative piece.</p>
+      <p class="guides-list"><strong>Guides:</strong> Stage 5 English (Years 9 to 10) &middot; Stage 6 Society and Culture (Years 11 to 12)</p>
+      <p><button class="btn" data-go="c-life">Open collection</button></p>
     </div>
-    <div class="card">
+    <div class="card coll" data-subjects="english legal">
       <h3>2. First Nations Voices</h3>
-      <p>Writing by people who identify as Aboriginal or Torres Strait Islander in their work, including a piece on deaths in custody.</p>
-      <span class="pill">English</span><span class="pill">Society and Culture</span><span class="pill cw">Deaths in custody</span>
-      <p style="margin-top:14px"><span class="btn ghost">Coming Term 2</span></p>
+      <p>Writing and interviews by Aboriginal and Torres Strait Islander people in prison about culture, art, family and advocacy.</p>
+      <p class="guides-list"><strong>Guides:</strong> Stage 5 English (Years 9 to 10) &middot; Stage 6 Legal Studies (Year 12)</p>
+      <p><button class="btn" data-go="c-fn">Open collection</button></p>
     </div>
-    <div class="card">
+    <div class="card coll" data-subjects="legal sac">
       <h3>3. Coming Home</h3>
-      <p>Parole, release, housing, work and reconnecting with family.</p>
-      <span class="pill">Legal Studies (Crime)</span><span class="pill">Society and Culture</span>
-      <p style="margin-top:14px"><span class="btn ghost">Coming Term 3</span></p>
+      <p>Day release, parole, housing and finding work. Recommended for senior students.</p>
+      <p class="guides-list"><strong>Guides:</strong> Stage 6 Legal Studies (Year 12) &middot; Stage 6 Society and Culture (Years 11 to 12)</p>
+      <p><button class="btn" data-go="c-home">Open collection</button></p>
     </div>
   </div>
 
@@ -158,8 +187,8 @@
   <div class="card">
     <ul>
       <li><strong>Students may have family in prison.</strong> Never ask students to share personal or family connections to the justice system.</li>
-      <li><strong>Give content warnings</strong> before each reading and offer the alternative piece listed in each pack.</li>
-      <li><strong>Acknowledge victims.</strong> These pieces share the perspective of people in prison, not the whole story. Make space for that in discussion. Support: <a href="https://victimsservices.justice.nsw.gov.au/">Victims Services NSW</a>.</li>
+      <li><strong>Give content warnings</strong> before each reading and offer the alternative piece listed in each collection.</li>
+      <li><strong>Acknowledge victims.</strong> These pieces share the perspective of people in prison, not the whole story. Make space for that in discussion. Support: <a href="https://victimsservices.justice.nsw.gov.au/" target="_blank" rel="noopener">Victims Services NSW</a>.</li>
       <li><strong>Avoid cultural load.</strong> Do not ask First Nations students to explain or speak for their communities.</li>
       <li><strong>Check your school's procedures</strong> for teaching controversial issues, including principal approval and parent notification.</li>
       <li><strong>Wellbeing support:</strong> school counsellor; Kids Helpline 1800 55 1800.</li>
@@ -174,38 +203,21 @@
       <div class="field"><label>Subject</label>
         <select><option>English</option><option>Legal Studies</option><option>Society and Culture</option><option>Other</option></select></div>
       <button class="btn">Sign up</button>
-      <p class="ok" style="display:none;color:var(--teal);margin-top:10px">Mockup only: no data is collected.</p>
+      <p class="ok" style="display:none;color:var(--green);margin-top:10px">Mockup only: no data is collected.</p>
     </form>
   </div>
 </section>
 
-<!-- ============ SAMPLE PACK ============ -->
-<section class="page" id="pack">
-  <button class="back" data-go="teachers">&larr; Back to For Teachers</button>
+<!-- ============ COLLECTION 1: LIFE INSIDE ============ -->
+<section class="page" id="c-life">
+  <button class="back" data-go="teachers">&larr; All collections</button>
   <h1>Reading Collection 1: Life Inside</h1>
   <p class="lede">What does an ordinary day in prison look like, and who gets to tell that story?</p>
-  <span class="pill">Years 9 to 10 English</span><span class="pill">1 to 2 lessons</span><span class="pill cw">Separation from family; drug use in Piece 4</span>
-
-  <h2>Syllabus links</h2>
-  <table>
-    <tr><th>Outcome</th><th>How this collection addresses it</th></tr>
-    <tr><td><strong>EN5-RVL-01</strong></td><td>Close reading of first-person non-fiction by Australian writers</td></tr>
-    <tr><td><strong>EN5-URB-01</strong></td><td>Evaluating how texts represent people in prison, and how that can affirm or challenge readers' attitudes</td></tr>
-    <tr><td><strong>EN5-ECA-01</strong></td><td>Writing a response letter for a real audience</td></tr>
-  </table>
-  <p style="font-size:.9rem;color:var(--muted)">Supports Stage 5 text requirements: non-fiction, and texts from a range of cultural and social perspectives.</p>
-
-  <h2>Context</h2>
-  <div class="stat-grid">
-    <div class="stat"><b>46,998</b><span>adults in prison in Australia, 30 June 2025</span></div>
-    <div class="stat"><b>42%</b><span>were unsentenced (on remand, awaiting the outcome of their case)</span></div>
-    <div class="stat"><b>92%</b><span>were male</span></div>
-  </div>
-  <p style="font-size:.85rem;color:var(--muted)">Source: Australian Bureau of Statistics, <em>Prisoners in Australia, 2025</em>.</p>
+  <span class="pill cw">Separation from family; drug use in Piece 4</span>
 
   <h2>The pieces</h2>
-  <p style="font-size:.9rem;color:var(--muted)">All pieces are published on About Time's website. Titles link to the original. Reuse in this collection would need each writer's consent through About Time.</p>
-    <div class="piece"><span class="pill">Piece 1: A day inside</span><span class="pill cw">Worry about parole</span>
+  <p class="small">All pieces are published on About Time's website. Titles link to the original. Reuse in this collection would need each writer's consent through About Time.</p>
+  <div class="piece"><span class="pill">Piece 1: A day inside</span><span class="pill cw">Worry about parole</span>
     <h3><a href="https://www.abouttime.org.au/letters/a-view-from-the-inside" target="_blank" rel="noopener">A View From the Inside</a></h3>
     <p class="by">Donna, writing from Adelaide Women's Prison, SA &middot; Issue No. 6, December 2024</p>
     <p>Donna describes daily life in a secure unit: low pay for work, limited phone calls, short yard time and fewer visits and courses than other units. She ends by thanking the paper for treating prisoners as people.</p></div>
@@ -222,7 +234,7 @@
     <p class="by">F.T.S., writing from a prison in NSW &middot; Issue No. 15, October 2025</p>
     <p>After six years in and out of seven prisons, the writer argues the system punishes without preventing harm, and calls for investment in housing, health and education instead.</p></div>
   <div class="piece"><span class="pill">Poem</span><span class="pill cw">Regret, separation</span>
-    <h3><a href="https://www.abouttime.org.au/creative/they-know-the-person-not-the-crime-a-first-timers-poem-on-family" target="_blank" rel="noopener">‘They Know the Person, Not the Crime’: A First-Timer’s Poem on Family</a></h3>
+    <h3><a href="https://www.abouttime.org.au/creative/they-know-the-person-not-the-crime-a-first-timers-poem-on-family" target="_blank" rel="noopener">&lsquo;They Know the Person, Not the Crime&rsquo;: A First-Timer&rsquo;s Poem on Family</a></h3>
     <p class="by">Martin, writing from a prison in VIC &middot; Issue No. 26, September 2026</p>
     <p>Written in his first weeks inside, Martin's poem is about missing his family and finding comfort in people who see him as more than his mistake.</p></div>
   <div class="piece"><span class="pill">Alternative piece (opt-out)</span>
@@ -230,29 +242,281 @@
     <p class="by">Chelsea, writing from a prison in WA &middot; Issue No. 23, June 2026</p>
     <p>A Writing Challenge finalist about learning to cook and bake in prison kitchens, and the dishes Chelsea hopes to make for her son after release.</p></div>
 
-  <h2>Discussion questions</h2>
-  <ol>
-    <li>What details does the writer choose to include about their day? What might they have left out, and why?</li>
-    <li>How does the writer want you to see them? Point to specific words or phrases.</li>
-    <li>What surprised you? What did you assume about prison before reading?</li>
-    <li>How does the writer's voice (first person, tone, humour) shape your response?</li>
-    <li>Find a news report about prison. How does it represent people in prison differently from these pieces?</li>
-    <li>Whose perspectives are missing from these pieces? Why might that matter?</li>
-  </ol>
-
-  <h2>Activities (choose one)</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Compare the coverage</h3>
-      <p>In pairs, compare one About Time piece with a news article about prison. Fill in a table: who speaks, what language describes people in prison, what the reader is invited to feel. Write one paragraph evaluating which text is more persuasive and why.</p>
+  <h2>Teaching guides</h2>
+  <div class="guides">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="life-en">Stage 5 English &middot; Years 9 to 10</button>
+      <button class="tab" data-tab="life-sac">Stage 6 Society and Culture &middot; Years 11 to 12</button>
     </div>
-    <div class="card">
-      <h3>Letter from Outside</h3>
-      <p>Write a 200 to 300 word letter responding to one piece: what you noticed, what it made you think about, a question you'd ask. Teachers can submit selected letters through the <a href="#" data-go="students">Letters from Outside</a> page.</p>
+
+    <div class="guide active" id="life-en">
+      <div class="guide-meta"><span class="pill">2 lessons &middot; 60 minutes each</span><span class="pill">Pieces 1, 2, 3 and poem; Piece 4 for Year 10 at teacher discretion</span></div>
+      <h3>Learning intention</h3>
+      <p>Students evaluate how first-person writing represents people in prison, and compare this with news reporting.</p>
+      <h3>Success criteria</h3>
+      <ul><li>I can identify language choices that shape how a writer wants to be seen.</li><li>I can compare how two texts represent people in prison.</li><li>I can write a response for a real audience, controlling my voice and language.</li></ul>
+      <h3>Syllabus links: English K&ndash;10 Syllabus (2022)</h3>
+      <table>
+        <tr><th>Outcome</th><th>Wording</th><th>How this guide addresses it</th></tr>
+        <tr><td><strong>EN5-RVL-01</strong></td><td>uses a range of personal, creative and critical strategies to interpret complex texts</td><td>Annotating first-person non-fiction and poetry</td></tr>
+        <tr><td><strong>EN5-URB-01</strong></td><td>evaluates how texts represent ideas and experiences, and how they can affirm or challenge values and attitudes</td><td>Comparing About Time pieces with a news report</td></tr>
+        <tr><td><strong>EN5-ECA-01</strong></td><td>crafts personal, creative and critical texts for a range of audiences by experimenting with and controlling language forms and features to shape meaning</td><td>Writing a Letter from Outside</td></tr>
+      </table>
+      <p class="small">Supports the Stage 5 text requirements for non-fiction and for texts from a range of cultural and social perspectives.</p>
+      <h3>Lesson sequence</h3>
+      <ol>
+        <li><strong>Lesson 1, 10 min:</strong> Students write anonymously what they picture when they hear "prison". Keep the notes for Lesson 2.</li>
+        <li><strong>Lesson 1, 25 min:</strong> In pairs, read Piece 1 and the poem. Annotate words and details that show how each writer wants to be seen.</li>
+        <li><strong>Lesson 1, 25 min:</strong> "Compare the coverage" task using a news report the teacher selects.</li>
+        <li><strong>Lesson 2, 25 min:</strong> Read Pieces 2 and 3. Discuss the questions below, then revisit the Lesson 1 notes: what has changed?</li>
+        <li><strong>Lesson 2, 35 min:</strong> Draft a Letter from Outside.</li>
+      </ol>
+      <h3>Discussion questions</h3>
+      <ol>
+        <li>What details does the writer choose to include about their day? What might they have left out, and why?</li>
+        <li>How does the writer want you to see them? Point to specific words or phrases.</li>
+        <li>How does the poem's form create a different effect from the prose pieces?</li>
+        <li>How does the writer's voice (first person, tone, humour) shape your response?</li>
+        <li>How does the news report represent people in prison differently from these pieces?</li>
+        <li>Whose perspectives are missing from these pieces? Why might that matter?</li>
+      </ol>
+      <h3>Activities</h3>
+      <div class="grid">
+        <div class="card"><h4>Compare the coverage</h4><p>Complete a table for an About Time piece and a news report: who speaks, what words describe people in prison, what the reader is invited to feel. Then write one paragraph evaluating which text is more persuasive and why.</p></div>
+        <div class="card"><h4>Letter from Outside (assessment option)</h4><p>Write a 200 to 300 word letter responding to one piece. Criteria: responds to specific details in the piece; voice suits a real reader; language is controlled and respectful. Selected letters can be submitted through the <a href="#" data-go="students">Letters from Outside</a> page.</p></div>
+      </div>
+      <h3>Differentiation</h3>
+      <ul><li><strong>Support:</strong> read pieces aloud; provide sentence starters for the letter ("When you wrote ... I noticed ...").</li><li><strong>Extension:</strong> Year 10 students compare Piece 4 with a news article on homelessness and evaluate each text's argument.</li></ul>
+      <p><button class="btn" onclick="window.print()">Print or save as PDF</button></p>
+    </div>
+
+    <div class="guide" id="life-sac">
+      <div class="guide-meta"><span class="pill">1 to 2 lessons</span><span class="pill">All pieces</span></div>
+      <h3>Learning intention</h3>
+      <p>Students analyse imprisonment as a form of social exclusion, using insider accounts as evidence.</p>
+      <h3>Success criteria</h3>
+      <ul><li>I can identify different forms of exclusion in the pieces.</li><li>I can explain how exclusion affects identity.</li><li>I can evaluate the strengths and limits of insider accounts as research sources.</li></ul>
+      <h3>Syllabus links: Society and Culture Stage 6 Syllabus (2013)</h3>
+      <table>
+        <tr><th>Syllabus link</th><th>How this guide addresses it</th></tr>
+        <tr><td><strong>HSC depth study: Social Inclusion and Exclusion</strong>, which examines "the nature of social inclusion and exclusion as well as implications for individuals and groups in societies and cultures"</td><td>Mapping the forms of exclusion the writers describe</td></tr>
+        <tr><td><strong>Personal Interest Project</strong></td><td>About Time as a source of insider perspectives for students researching incarceration</td></tr>
+      </table>
+      <p class="small">Teachers should map activities to the relevant HSC outcomes in the full syllabus document.</p>
+      <h3>Discussion questions</h3>
+      <ol>
+        <li>How do the writers describe being cut off from wider society?</li>
+        <li>Which forms of exclusion are imposed by institutions (pay, phone access, visits), and which are felt socially?</li>
+        <li>Donna thanks About Time for treating prisoners as people. What does this suggest about identity and labelling?</li>
+        <li>How might exclusion continue after release? (This links to Collection 3: Coming Home.)</li>
+        <li>What are the strengths and limits of insider accounts compared with official statistics?</li>
+      </ol>
+      <h3>Activity: exclusion map</h3>
+      <p>In groups, sort evidence from the pieces into economic, social, cultural and political exclusion. For each, note who or what causes it and how it affects the writer's sense of self. Finish with a paragraph on which form of exclusion seems hardest to undo after release.</p>
+      <h3>Research skills link</h3>
+      <p>Students compare one About Time piece with a news report as a short content analysis, discussing insider and outsider perspectives and the ethics of researching a group they are not part of.</p>
+      <p><button class="btn" onclick="window.print()">Print or save as PDF</button></p>
     </div>
   </div>
+</section>
 
-  <p style="margin-top:20px"><span class="btn">Download pack (PDF)</span></p>
+<!-- ============ COLLECTION 2: FIRST NATIONS VOICES ============ -->
+<section class="page" id="c-fn">
+  <button class="back" data-go="teachers">&larr; All collections</button>
+  <h1>Reading Collection 2: First Nations Voices</h1>
+  <p class="lede">How do Aboriginal and Torres Strait Islander people in prison keep culture, family and advocacy strong, in their own words?</p>
+
+  <div class="ack"><strong>Before you teach.</strong>
+    <ul>
+      <li>Talk to your school's Aboriginal Education Officer or local Aboriginal Education Consultative Group (AECG) before using this collection.</li>
+      <li>Refer to writers by the Nation and terms they use for themselves, and follow the <a href="https://www.narragunnawali.org.au/about/terminology-guide" target="_blank" rel="noopener">Narragunnawali terminology guide</a>.</li>
+      <li>Avoid cultural load: do not ask First Nations students to explain or speak for their communities.</li>
+      <li>Keep a strengths-based focus. These pieces are about culture, art, family, education and advocacy, as well as the impacts of incarceration.</li>
+      <li>Check each piece for names or images of people who have died, and give a warning if needed.</li>
+    </ul>
+  </div>
+
+  <h2>The pieces</h2>
+  <p class="small">All pieces are published on About Time's website. Titles link to the original. Reuse in this collection would need each writer's consent through About Time.</p>
+  <div class="piece"><span class="pill">Piece 1: Culture and art</span>
+    <h3><a href="https://www.abouttime.org.au/mob/tree-of-life" target="_blank" rel="noopener">Tree of Life</a></h3>
+    <p class="by">Johno, Palawa People, writing from Loddon Prison, VIC &middot; Issue No. 6, December 2024</p>
+    <p>Johno describes learning Aboriginal art and pottery in prison, helping other men with their work, and how the art rooms give Aboriginal men a culturally relevant space to connect. He plans to keep creating after release, with his children.</p></div>
+  <div class="piece"><span class="pill">Piece 2: Many voices</span><span class="pill cw">Substance use, family separation</span>
+    <h3><a href="https://www.abouttime.org.au/mob/voices-from-beyond-the-bars-2025" target="_blank" rel="noopener">Voices From Beyond the Bars 2025</a></h3>
+    <p class="by">About Time feature, Mob section &middot; Issue No. 18, January 2026</p>
+    <p>Excerpts from interviews with First Nations people in six Victorian prisons, recorded during NAIDOC Week for the <em>Beyond the Bars</em> radio program. Speakers talk about fatherhood, culture, art and finding housing after release.</p></div>
+  <div class="piece"><span class="pill">Piece 3: Advocacy</span><span class="pill cw">Prison lockdowns</span>
+    <h3><a href="https://www.abouttime.org.au/experiences/protesting-for-change" target="_blank" rel="noopener">Protesting for Change</a></h3>
+    <p class="by">Kelly Flanagan, First Nations artist and writer with lived experience of the Victorian prison system &middot; Issue No. 13, August 2025</p>
+    <p>Soon after her release on parole, Kelly organised a protest in Melbourne against prison lockdowns. She reflects on the kindness of supporters and urges women inside to join the movement when they are released.</p></div>
+  <div class="piece"><span class="pill">Piece 4: Education</span><span class="pill cw">Stolen Generations, mild coarse language</span>
+    <h3><a href="https://www.abouttime.org.au/experiences/stay-connected-stay-educated-vickie-roachs-message-to-those-inside-74e1t" target="_blank" rel="noopener">Stay Connected, Stay Educated: Vickie Roach&rsquo;s Message to Those Inside</a></h3>
+    <p class="by">Reported by Denham Sadler, About Time &middot; Issue No. 14, September 2025</p>
+    <p>Vickie Roach, a Yuin woman and Stolen Generations survivor whose High Court challenge won some people in prison the right to vote, shares her advice for people inside: keep studying, stay connected to family and keep advocating.</p></div>
+  <div class="piece"><span class="pill">Piece 5: History (Stage 6 only)</span><span class="pill cw">Massacres, sexual violence, removal of children</span>
+    <h3><a href="https://www.abouttime.org.au/mob/forgotten-story" target="_blank" rel="noopener">Forgotten Story</a></h3>
+    <p class="by">KC, a Wiradjuri man from Latje Latje land, writing from Ravenhall Correctional Centre, VIC &middot; Issue No. 5, November 2024</p>
+    <p>KC traces the history of dispossession, terra nullius and assimilation policies, argues that this history is often hidden, and connects it to the overrepresentation of Aboriginal people in prison today.</p></div>
+  <div class="piece"><span class="pill">Alternative piece (opt-out)</span>
+    <h3><a href="https://www.abouttime.org.au/mob/just-keep-turning-up" target="_blank" rel="noopener">Just Keep Turning Up</a></h3>
+    <p class="by">Reported by Denham Sadler, About Time &middot; Issue No. 26, September 2026</p>
+    <p>A profile of the First Nations-led GO Foundation and its education scholarships, with a message for people in prison to stay connected to culture and keep learning.</p></div>
+
+  <h2>Teaching guides</h2>
+  <div class="guides">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="fn-en">Stage 5 English &middot; Years 9 to 10</button>
+      <button class="tab" data-tab="fn-legal">Stage 6 Legal Studies &middot; Year 12</button>
+    </div>
+
+    <div class="guide active" id="fn-en">
+      <div class="guide-meta"><span class="pill">2 lessons &middot; 60 minutes each</span><span class="pill">Pieces 1 to 4</span></div>
+      <h3>Learning intention</h3>
+      <p>Students explore how First Nations people in prison represent culture, identity and connection in their own voices.</p>
+      <h3>Success criteria</h3>
+      <ul><li>I can explain how a writer or speaker represents their connection to culture and family.</li><li>I can compare first-person and reported texts.</li><li>I can evaluate how these texts challenge or confirm common representations.</li></ul>
+      <h3>Syllabus links: English K&ndash;10 Syllabus (2022)</h3>
+      <table>
+        <tr><th>Outcome</th><th>Wording</th><th>How this guide addresses it</th></tr>
+        <tr><td><strong>EN5-RVL-01</strong></td><td>uses a range of personal, creative and critical strategies to interpret complex texts</td><td>Close reading of prose, interview excerpts and reported text</td></tr>
+        <tr><td><strong>EN5-URB-01</strong></td><td>evaluates how texts represent ideas and experiences, and how they can affirm or challenge values and attitudes</td><td>Evaluating how the pieces challenge narratives that focus only on deficit</td></tr>
+      </table>
+      <p class="small">Supports the Stage 5 text requirement to study texts by Aboriginal and Torres Strait Islander authors.</p>
+      <h3>Lesson sequence</h3>
+      <ol>
+        <li><strong>Lesson 1:</strong> Read Piece 1 and selected excerpts from Piece 2. Focus: what connects people to culture and family inside?</li>
+        <li><strong>Lesson 2:</strong> Read Pieces 3 and 4. Focus: voice, purpose and advocacy. Complete the voice and purpose table.</li>
+      </ol>
+      <h3>Discussion questions</h3>
+      <ol>
+        <li>What does art mean to Johno, and how does he show its importance to other men?</li>
+        <li>How do the speakers in <em>Beyond the Bars</em> describe connection to family and culture?</li>
+        <li>How does Kelly Flanagan use her voice and actions to bring about change?</li>
+        <li>Vickie Roach's story is reported by a journalist rather than written by her. How does that change the way we hear her voice?</li>
+        <li>How do these pieces challenge representations that focus only on problems?</li>
+      </ol>
+      <h3>Activity: voice and purpose table</h3>
+      <p>For each piece, record who is speaking, who they are speaking to, their purpose, and one quotation that shows their voice. Then write a paragraph on which piece communicates its purpose most powerfully and why.</p>
+      <p><button class="btn" onclick="window.print()">Print or save as PDF</button></p>
+    </div>
+
+    <div class="guide" id="fn-legal">
+      <div class="guide-meta"><span class="pill">1 to 2 lessons</span><span class="pill">Pieces 1 to 5</span></div>
+      <h3>Learning intention</h3>
+      <p>Students evaluate whether the criminal justice system achieves justice for Aboriginal and Torres Strait Islander Peoples, using lived perspectives alongside legal sources.</p>
+      <h3>Syllabus links: Legal Studies 11&ndash;12 Syllabus (2025)</h3>
+      <table>
+        <tr><th>Syllabus link</th><th>Wording</th></tr>
+        <tr><td><strong>Year 12 core: The criminal justice system</strong> (content)</td><td>Culturally appropriate options to improve outcomes for Aboriginal and Torres Strait Islander Peoples</td></tr>
+        <tr><td><strong>LST-12-04</strong></td><td>analyses differing perspectives of individuals, groups and society in influencing the law</td></tr>
+        <tr><td><strong>LST-12-06</strong></td><td>analyses legal issues to determine the extent to which the law achieves justice for individuals, groups and society</td></tr>
+      </table>
+      <p class="small">Year 12 teaching of the 2025 syllabus begins in Term 4, 2027. Until then, this guide can be used with the Crime topic of the current syllabus.</p>
+      <h3>How to use these pieces in Legal Studies</h3>
+      <p>Lived accounts are perspectives, not legal evidence. Pair them with legal and official sources: the Royal Commission into Aboriginal Deaths in Custody (1991), the Australian Law Reform Commission's <em>Pathways to Justice</em> (Report 133, 2017), and ABS <em>Prisoners in Australia</em>.</p>
+      <h3>Discussion questions</h3>
+      <ol>
+        <li>What do Pieces 1 and 2 suggest culturally appropriate programs inside prison can look like?</li>
+        <li>How does KC's account of history help explain overrepresentation today?</li>
+        <li>Which recommendations in <em>Pathways to Justice</em> respond to issues the writers raise?</li>
+        <li>To what extent does the criminal justice system achieve justice for Aboriginal and Torres Strait Islander Peoples?</li>
+      </ol>
+      <h3>Activity: extended response plan</h3>
+      <p>Plan a response to question 4 using five parts: claim; legal source; statistic; lived perspective from a piece; judgement.</p>
+      <p><button class="btn" onclick="window.print()">Print or save as PDF</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLLECTION 3: COMING HOME ============ -->
+<section class="page" id="c-home">
+  <button class="back" data-go="teachers">&larr; All collections</button>
+  <h1>Reading Collection 3: Coming Home</h1>
+  <p class="lede">What happens when people leave prison, and does the system help them stay out?</p>
+  <span class="pill cw">Recommended for Years 11 to 12: homelessness, grief, mild coarse language</span>
+
+  <h2>The pieces</h2>
+  <p class="small">All pieces are published on About Time's website. Titles link to the original. Reuse in this collection would need each writer's consent through About Time.</p>
+  <div class="piece"><span class="pill">Piece 1: Before release</span><span class="pill cw">Homelessness, hopelessness</span>
+    <h3><a href="https://www.abouttime.org.au/experiences/facing-release-with-nowhere-to-go" target="_blank" rel="noopener">Facing Release With Nowhere to Go</a></h3>
+    <p class="by">MJ, writing from a prison in QLD &middot; Issue No. 27, October 2026</p>
+    <p>About to be released on parole after 11 periods in custody, MJ describes leaving with no housing, no job and strict conditions, and how hard it is to stay hopeful while focusing on being present for their children.</p></div>
+  <div class="piece"><span class="pill">Piece 2: Day release</span><span class="pill cw">Emotional distress, mild coarse language</span>
+    <h3><a href="https://www.abouttime.org.au/experiences/day-release-freedom-whiplash" target="_blank" rel="noopener">Day Release: Freedom Whiplash</a></h3>
+    <p class="by">Jonathan, writing from a prison in NSW &middot; Issue No. 22, May 2026</p>
+    <p>Jonathan describes the hope of a monthly day out with his mother, including a swim at Coogee, and the jarring return to prison afterwards.</p></div>
+  <div class="piece"><span class="pill">Piece 3: Parole</span><span class="pill cw">Grief, mild coarse language</span>
+    <h3><a href="https://www.abouttime.org.au/reintegration/ask-stacey-how-it-feels-to-finish-parole" target="_blank" rel="noopener">Ask Stacey! How It Feels to Finish Parole</a></h3>
+    <p class="by">Stacey Stokes, who has lived experience of prison &middot; Issue No. 25, August 2026</p>
+    <p>Answering readers' questions, Stacey describes electronic monitoring, exclusion zones, drug tests and weekly reporting, and argues that parole conditions did not support her reintegration.</p></div>
+  <div class="piece"><span class="pill">Piece 4: Work</span><span class="pill cw">Solitary confinement, stigma</span>
+    <h3><a href="https://www.abouttime.org.au/experiences/employment-after-prison-give-us-a-chance" target="_blank" rel="noopener">Employment After Prison: Give Us a Chance</a></h3>
+    <p class="by">Ashleigh Chapman, who has lived experience of prison &middot; Issue No. 20, March 2026</p>
+    <p>Despite completing education and rehabilitation programs, Ashleigh is turned away from jobs once employers learn of her record. She argues that people with past convictions deserve a fair chance to work.</p></div>
+  <div class="piece"><span class="pill">Alternative piece (opt-out)</span>
+    <h3><a href="https://www.abouttime.org.au/creative/baking-in-boronia" target="_blank" rel="noopener">Baking in Boronia</a></h3>
+    <p class="by">Chelsea, writing from a prison in WA &middot; Issue No. 23, June 2026</p>
+    <p>Learning to cook in prison, and the dishes Chelsea hopes to make for her son after release.</p></div>
+
+  <h2>Teaching guides</h2>
+  <div class="guides">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="home-legal">Stage 6 Legal Studies &middot; Year 12</button>
+      <button class="tab" data-tab="home-sac">Stage 6 Society and Culture &middot; Years 11 to 12</button>
+    </div>
+
+    <div class="guide active" id="home-legal">
+      <div class="guide-meta"><span class="pill">1 to 2 lessons</span><span class="pill">All pieces</span></div>
+      <h3>Learning intention</h3>
+      <p>Students evaluate whether parole and post-sentencing arrangements achieve the purposes of sentencing, using lived perspectives alongside legal sources.</p>
+      <h3>Syllabus links: Legal Studies 11&ndash;12 Syllabus (2025)</h3>
+      <table>
+        <tr><th>Syllabus link</th><th>Wording</th></tr>
+        <tr><td><strong>Year 12 core: The criminal justice system</strong> (content)</td><td>The purposes of sentencing, including punishment, deterrence, protection and rehabilitation</td></tr>
+        <tr><td><strong>Year 12 core: The criminal justice system</strong> (content)</td><td>The purpose and conditions of parole</td></tr>
+        <tr><td><strong>LST-12-04</strong></td><td>analyses differing perspectives of individuals, groups and society in influencing the law</td></tr>
+        <tr><td><strong>LST-12-06</strong></td><td>analyses legal issues to determine the extent to which the law achieves justice for individuals, groups and society</td></tr>
+        <tr><td><strong>LST-12-07</strong></td><td>uses and analyses a range of sources to evaluate the effectiveness of the law in addressing issues</td></tr>
+      </table>
+      <p class="small">Year 12 teaching of the 2025 syllabus begins in Term 4, 2027. Until then, this guide can be used with the Crime topic of the current syllabus.</p>
+      <h3>How to use these pieces in Legal Studies</h3>
+      <p>Lived accounts are perspectives, not legal evidence. Pair them with the parole provisions in NSW legislation and reoffending data from the NSW Bureau of Crime Statistics and Research (BOCSAR).</p>
+      <h3>Discussion questions</h3>
+      <ol>
+        <li>Which purpose of sentencing do the writers suggest the system prioritises in practice?</li>
+        <li>What parole conditions does Stacey describe? Do they support rehabilitation?</li>
+        <li>How might the housing and employment barriers MJ and Ashleigh describe affect reoffending?</li>
+        <li>Does BOCSAR data support or challenge the writers' claims?</li>
+        <li>To what extent does parole achieve its purpose?</li>
+      </ol>
+      <h3>Activity: evaluation table</h3>
+      <p>For parole, complete five columns: purpose; what the law says; what the writers experienced; what the data shows; judgement. Use the table to plan an extended response to question 5.</p>
+      <p><button class="btn" onclick="window.print()">Print or save as PDF</button></p>
+    </div>
+
+    <div class="guide" id="home-sac">
+      <div class="guide-meta"><span class="pill">1 to 2 lessons</span><span class="pill">All pieces</span></div>
+      <h3>Learning intention</h3>
+      <p>Students analyse how exclusion continues after release, and what helps people rebuild connection.</p>
+      <h3>Syllabus links: Society and Culture Stage 6 Syllabus (2013)</h3>
+      <table>
+        <tr><th>Syllabus link</th><th>How this guide addresses it</th></tr>
+        <tr><td><strong>HSC depth study: Social Inclusion and Exclusion</strong>, which examines "the nature of social inclusion and exclusion as well as implications for individuals and groups in societies and cultures"</td><td>Analysing barriers to inclusion after release</td></tr>
+      </table>
+      <p class="small">Teachers should map activities to the relevant HSC outcomes in the full syllabus document.</p>
+      <h3>Discussion questions</h3>
+      <ol>
+        <li>What barriers to inclusion do the writers face after release?</li>
+        <li>How does a criminal record work as a label that follows people after their sentence ends?</li>
+        <li>Jonathan's day release gives him a brief experience of inclusion. Why might this make returning harder?</li>
+        <li>What forms of support do the writers suggest would help?</li>
+      </ol>
+      <h3>Activity: barriers and bridges</h3>
+      <p>Create a two-column chart. On one side, list barriers to inclusion from the pieces (housing, work, parole conditions, stigma). On the other, list supports that could act as bridges. Finish by ranking which bridge would make the most difference, and justify your choice.</p>
+      <p><button class="btn" onclick="window.print()">Print or save as PDF</button></p>
+    </div>
+  </div>
 </section>
 
 <!-- ============ STUDENTS ============ -->
@@ -352,12 +616,23 @@
   const navBtns = document.querySelectorAll('nav button');
   function go(id){
     pages.forEach(p => p.classList.toggle('active', p.id === id));
-    const navId = id === 'pack' ? 'teachers' : id;
+    const navId = id.startsWith('c-') ? 'teachers' : id;
     navBtns.forEach(b => b.classList.toggle('active', b.dataset.page === navId));
     window.scrollTo({top:0, behavior:'smooth'});
   }
   navBtns.forEach(b => b.addEventListener('click', () => go(b.dataset.page)));
   document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); go(el.dataset.go); }));
+  document.querySelectorAll('.guides').forEach(g => {
+    g.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+      g.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+      g.querySelectorAll('.guide').forEach(x => x.classList.toggle('active', x.id === t.dataset.tab));
+    }));
+  });
+  document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(x => x.classList.toggle('active', x === c));
+    const f = c.dataset.filter;
+    document.querySelectorAll('.coll').forEach(card => card.classList.toggle('hidden', f !== 'all' && !card.dataset.subjects.split(' ').includes(f)));
+  }));
 </script>
 </body>
 </html>
